@@ -7,6 +7,6 @@ public class WhippedCream : MonoBehaviour
     public GameManager manager;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.WhippedCream);
+       manager.ChangeCursor(Cursor_State.WhippedCream);
     }
 }

@@ -7,6 +7,6 @@ public class Marshmallow : MonoBehaviour
     public GameManager manager;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.Marshmallow);
+       manager.ChangeCursor(Cursor_State.Marshmallow);
     }
 }

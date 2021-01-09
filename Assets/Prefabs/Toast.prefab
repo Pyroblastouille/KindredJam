@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 932899864244155699}
   - component: {fileID: 5287421725349877103}
   - component: {fileID: -2476284917033667531}
+  - component: {fileID: -6874533238736592815}
   m_Layer: 0
   m_Name: Toast
   m_TagString: Toast
@@ -99,7 +100,7 @@ MonoBehaviour:
   empty: {fileID: 21300000, guid: 6ab3b64c4701f5146977123c302b3622, type: 3}
   grilled: {fileID: 21300000, guid: 2c04c32df7d5ac04daec23ec058549c0, type: 3}
   choc: {fileID: 21300000, guid: 56ac877da2b5b7c44b2c9ba941e86621, type: 3}
-  peanut: {fileID: 21300000, guid: 72d83214a0af3dd478b9a08b052793a7, type: 3}
+  peanut: {fileID: 21300000, guid: 7fb6df7632d3e84468221c811de3f380, type: 3}
   iceBerry: {fileID: 21300000, guid: 72d83214a0af3dd478b9a08b052793a7, type: 3}
 --- !u!61 &-2476284917033667531
 BoxCollider2D:
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.09707153}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -125,5 +126,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 5, y: 4.393301}
   m_EdgeRadius: 0
+--- !u!50 &-6874533238736592815
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932899864244155660}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

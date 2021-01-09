@@ -7,6 +7,6 @@ public class ChocolateJam : MonoBehaviour
     public GameManager manager;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.Choc);
+       manager.ChangeCursor(Cursor_State.Choc);
     }
 }

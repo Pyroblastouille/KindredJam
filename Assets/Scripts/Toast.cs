@@ -2,29 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 public enum Toast_State { Empty,Grilled,Grilling,Choc,Peanut,IceBerry}
-public class Toast : MonoBehaviour, IDraggable
+public class Toast : IDraggable
 {
     public GameManager manager;
     public Sprite empty, grilled, choc, peanut, iceBerry;
 
+    private bool isInToaster = false;
+    private bool isInDustbin = false;
     private Toast_State current;
     private SpriteRenderer sr;
-    
+    private Vector2 defaultPosition;
     // Start is called before the first frame update
     void Start()
     {
+        defaultPosition = transform.position;
         sr = GetComponent<SpriteRenderer>();
         ChangeState(Toast_State.Empty);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void ChangeState(Toast_State state)
     {
         sr.enabled = true;
+        canDrag = true;
         switch (state)
         {
             case Toast_State.Empty:
@@ -34,6 +33,8 @@ public class Toast : MonoBehaviour, IDraggable
             case Toast_State.Grilling:
                 if(current == Toast_State.Empty)
                 {
+                    canDrag = false;
+                    current = Toast_State.Grilling;
                     sr.enabled = false;
                 }
                 break;
@@ -68,19 +69,64 @@ public class Toast : MonoBehaviour, IDraggable
             default:
                 break;
         }
+
     }
 
-    public void Throw()
+    public override void Throw()
     {
         ChangeState(Toast_State.Empty);
     }
-    private void OnMouseDrag()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        manager.SetDraggable(this);
+        if (collision.CompareTag("Toaster"))
+            isInToaster = true;
+        if (collision.CompareTag("Dustbin"))
+            isInDustbin = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Toaster"))
+            isInToaster = false;
+        if (collision.CompareTag("Dustbin"))
+            isInDustbin = false;
+    }
+
+    public override bool GiveToClient(Client client)
+    {
+
+        if (client.WantToast(current))
+        {
+            client.GiveToast(this);
+            ChangeState(Toast_State.Empty);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public override string ToString()
     {
         return "Toast";
     }
 
+    public override void Release()
+    {
+        transform.position = startPosition;
+
+        if (isInToaster)
+        {
+            if (!GameObject.FindGameObjectWithTag("Toaster").GetComponent<Toaster>().Grilling(this))
+            {
+                manager.ImpossibleToGrill();
+            }
+            else
+            {
+                ChangeState(Toast_State.Grilling);
+            }
+        }
+        if (isInDustbin)
+            ChangeState(Toast_State.Empty);
+    }
 }

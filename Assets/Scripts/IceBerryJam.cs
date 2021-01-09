@@ -7,6 +7,6 @@ public class IceBerryJam : MonoBehaviour
     public GameManager manager;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.Iceberry);
+       manager.ChangeCursor(Cursor_State.Iceberry);
     }
 }

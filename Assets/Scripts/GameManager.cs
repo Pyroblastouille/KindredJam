@@ -1,47 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum OnCursor { Nothing,Choc,Peanut,Iceberry,Marshmallow,WhippedCream,Dustbin}
 public class GameManager : MonoBehaviour
 {
-    public OnCursor onCursor = OnCursor.Nothing;
-    private IDraggable dragNDrop;
-    public void Throw()
+    public Cursor_Script cursor;
+    
+    public void ImpossibleToGrill()
     {
-        if(dragNDrop != null)
-        {
-            Debug.Log("Throw : "+ dragNDrop.ToString());
-            dragNDrop.Throw();
-            dragNDrop = null;
-        }
+        Debug.LogError("Impossible de grillé un toast");
     }
-    public void SetDraggable(IDraggable draggable)
+    public void ImpossibleToFill()
     {
-        dragNDrop = draggable;
+        Debug.LogError("Impossible de remplir la tasse");
     }
-    public void ChangeCursor(OnCursor newCursor)
+    public void ChangeCursor(Cursor_State newCursor)
     {
-        onCursor = newCursor;
-        Debug.Log("New Cursor "+newCursor.ToString());
-        switch (newCursor)
-        {
-            case OnCursor.Nothing:
-                break;
-            case OnCursor.Choc:
-                break;
-            case OnCursor.Peanut:
-                break;
-            case OnCursor.Iceberry:
-                break;
-            case OnCursor.Marshmallow:
-                break;
-            case OnCursor.WhippedCream:
-                break;
-            case OnCursor.Dustbin:
-                break;
-            default:
-                break;
-        }
+        cursor.ChangeState(newCursor);
     }
     // Start is called before the first frame update
     void Start()
@@ -52,6 +27,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 }

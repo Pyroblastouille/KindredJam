@@ -6,6 +6,10 @@ TagManager:
   tags:
   - HotChoc
   - Toast
+  - Toaster
+  - HotChocMaker
+  - Dustbin
+  - cursor
   layers:
   - Default
   - TransparentFX

@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum HotChoc_State { Empty,Filling,Filled,Marshmallow,WhippedCream}
-public class HotChoc : MonoBehaviour, IDraggable
+public class HotChoc : IDraggable
 {
     public GameManager manager;
     public Sprite empty, filled, marshmallow, whippedCream;
     private SpriteRenderer sr;
     private HotChoc_State current;
+    private bool isInHotChocMaker = false;
+    private bool isInDustbin = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+        ChangeState(HotChoc_State.Empty);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void ChangeState(HotChoc_State state)
     {
         sr.enabled = true;
+        canDrag = true;
         switch (state)
         {
             case HotChoc_State.Empty:
@@ -32,6 +32,8 @@ public class HotChoc : MonoBehaviour, IDraggable
             case HotChoc_State.Filling:
                 if (current == HotChoc_State.Empty)
                 {
+                    canDrag = false;
+                    current = HotChoc_State.Filling;
                     sr.enabled = false;
                 }
                 break;
@@ -61,16 +63,61 @@ public class HotChoc : MonoBehaviour, IDraggable
         }
     }
 
-    public void Throw()
+    public override void Throw()
     {
         ChangeState(HotChoc_State.Empty);
-    }
-    private void OnMouseDrag()
-    {
-        manager.SetDraggable(this);
     }
     public override string ToString()
     {
         return "Hot Chocolate";
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HotChocMaker"))
+            isInHotChocMaker = true;
+        if (collision.CompareTag("Dustbin"))
+            isInDustbin = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HotChocMaker"))
+            isInHotChocMaker = false;
+        if (collision.CompareTag("Dustbin"))
+            isInDustbin = false;
+    }
+    public override bool GiveToClient(Client client)
+    {
+        
+        if (client.WantChoc(current))
+        {
+            client.GiveChoc(this);
+            ChangeState(HotChoc_State.Empty);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public override void Release()
+    {
+        transform.position = startPosition;
+
+        if (isInHotChocMaker)
+        {
+            if (!GameObject.FindGameObjectWithTag("HotChocMaker").GetComponent<HotChocMaker>().Filling(this))
+            {
+                manager.ImpossibleToFill();
+            }
+            else
+            {
+                ChangeState(HotChoc_State.Filling);
+            }
+        }
+        if (isInDustbin)
+            ChangeState(HotChoc_State.Empty);
     }
 }

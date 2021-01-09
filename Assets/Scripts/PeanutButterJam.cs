@@ -7,6 +7,6 @@ public class PeanutButterJam: MonoBehaviour
     public GameManager manager;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.Peanut);
+       manager.ChangeCursor(Cursor_State.Peanut);
     }
 }

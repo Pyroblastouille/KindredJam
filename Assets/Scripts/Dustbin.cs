@@ -5,13 +5,9 @@ using UnityEngine;
 public class Dustbin : MonoBehaviour
 {
     public GameManager manager;
+    private IDraggable colliding;
     private void OnMouseDown()
     {
-       manager.ChangeCursor(OnCursor.Dustbin);
-    }
-
-    private void OnMouseUp()
-    {
-        manager.Throw();   
+       manager.ChangeCursor(Cursor_State.Dustbin);
     }
 }
