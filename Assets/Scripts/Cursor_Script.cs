@@ -9,7 +9,7 @@ public class Cursor_Script : MonoBehaviour
     private Cursor_State current = Cursor_State.Empty;
     private SpriteRenderer cursor;
     private Collider2D collider2d;
-
+    private bool follow = false;
     private IDraggable draggable;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +21,12 @@ public class Cursor_Script : MonoBehaviour
     {
 
         current = newCursor;
-        collider2d.enabled = true;
+        follow = newCursor != Cursor_State.Empty;
         switch (newCursor)
         {
             case Cursor_State.Empty:
-                cursor.sprite = null;
-                collider2d.enabled = false;
+                //cursor.sprite = null;
+                transform.position = new Vector3(0, 0, 10);
                 break;
             case Cursor_State.Choc:
                 cursor.sprite = choc;
@@ -53,7 +53,8 @@ public class Cursor_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 3);
+        if(follow)
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 3);
         if (Input.GetMouseButtonUp(0))
         {
             if (draggable != null)

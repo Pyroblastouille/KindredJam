@@ -11,10 +11,12 @@ public class HotChoc : IDraggable
     private HotChoc_State current;
     private bool isInHotChocMaker = false;
     private bool isInDustbin = false;
+    private ParticleSystem ps;
 
     // Start is called before the first frame update
     void Start()
     {
+        ps = GetComponent<ParticleSystem>();
         sr = GetComponent<SpriteRenderer>();
         ChangeState(HotChoc_State.Empty);
     }
@@ -26,6 +28,7 @@ public class HotChoc : IDraggable
         switch (state)
         {
             case HotChoc_State.Empty:
+                ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 current = HotChoc_State.Empty;
                 sr.sprite = empty;
                 break;
@@ -40,6 +43,7 @@ public class HotChoc : IDraggable
             case HotChoc_State.Filled:
                 if (current == HotChoc_State.Filling)
                 {
+                    ps.Play();
                     current = HotChoc_State.Filled;
                     sr.sprite = filled;
                 }

@@ -897,7 +897,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672081389}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1464,10 +1464,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -404086609959943318, guid: 42ce08af7532e34499877c503ab37beb,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.46666667
+      objectReference: {fileID: 0}
     - target: {fileID: 847106668, guid: 42ce08af7532e34499877c503ab37beb, type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1313852300}
+    - target: {fileID: 847106668, guid: 42ce08af7532e34499877c503ab37beb, type: 3}
+      propertyPath: fillTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1767123326385199347, guid: 42ce08af7532e34499877c503ab37beb,
         type: 3}
       propertyPath: m_RootOrder
@@ -1796,6 +1805,10 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1313852300}
+    - target: {fileID: 1801591879, guid: 493e54704db8675429f5d33f0e4e9552, type: 3}
+      propertyPath: grillTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6233721434176186486, guid: 493e54704db8675429f5d33f0e4e9552,
         type: 3}
       propertyPath: m_RootOrder
