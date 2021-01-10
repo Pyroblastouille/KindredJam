@@ -12,6 +12,8 @@ public class Toast : IDraggable
     private Toast_State current;
     private SpriteRenderer sr;
     private Vector2 defaultPosition;
+
+    public Toast_State CurrentState { get => current; }
     // Start is called before the first frame update
     void Start()
     {

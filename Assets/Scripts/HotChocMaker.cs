@@ -60,6 +60,10 @@ public class HotChocMaker : MonoBehaviour
     {
         bool flag = false;
         int i = 0;
+        if(hotChoc.CurrentState != HotChoc_State.Empty)
+        {
+            return flag;
+        }
         while (!flag && i < maxHotChocs)
         {
             if (hotChocs[i] == null)

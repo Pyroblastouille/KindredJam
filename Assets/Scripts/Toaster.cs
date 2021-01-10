@@ -65,6 +65,10 @@ public class Toaster : MonoBehaviour
     {
         bool flag = false;
         int i = 0;
+        if (toast.CurrentState != Toast_State.Empty)
+        {
+            return flag;
+        }
         while (!flag && i < maxToasts)
         {
             if(toasts[i] == null)

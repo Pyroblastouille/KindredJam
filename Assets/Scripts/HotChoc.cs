@@ -13,6 +13,7 @@ public class HotChoc : IDraggable
     private bool isInDustbin = false;
     private ParticleSystem ps;
 
+    public HotChoc_State CurrentState { get => current; }
     // Start is called before the first frame update
     void Start()
     {
