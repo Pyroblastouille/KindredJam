@@ -1537,6 +1537,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HotChocMaker
       objectReference: {fileID: 0}
+    - target: {fileID: 3813046358046826580, guid: 42ce08af7532e34499877c503ab37beb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813046358046826580, guid: 42ce08af7532e34499877c503ab37beb,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813046358046826580, guid: 42ce08af7532e34499877c503ab37beb,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813046358046826580, guid: 42ce08af7532e34499877c503ab37beb,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3.23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42ce08af7532e34499877c503ab37beb, type: 3}
 --- !u!1001 &2944049736638659613
