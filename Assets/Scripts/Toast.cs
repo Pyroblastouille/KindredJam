@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Toast_State { Empty,Grilled,Grilling,Choc,Peanut,IceBerry}
+public enum Toast_State { Empty,Grilled,Choc,Peanut,IceBerry, Grilling }
 public class Toast : IDraggable
 {
     public GameManager manager;
@@ -96,10 +96,8 @@ public class Toast : IDraggable
 
     public override bool GiveToClient(Client client)
     {
-
-        if (client.WantToast(current))
+        if (client.GiveToast(this))
         {
-            client.GiveToast(this);
             ChangeState(Toast_State.Empty);
             return true;
         }

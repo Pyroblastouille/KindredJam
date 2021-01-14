@@ -7,15 +7,15 @@ public class Cursor_Script : MonoBehaviour
 {
     public Sprite choc, peanut, iceberry, marshmallow, chantilly, dustbin;
     private Cursor_State current = Cursor_State.Empty;
-    private SpriteRenderer cursor;
+    public SpriteRenderer cursor;
     private Collider2D collider2d;
     private bool follow = false;
     private IDraggable draggable;
     // Start is called before the first frame update
     void Start()
     {
+        
         collider2d = GetComponent<Collider2D>();
-        cursor = GetComponent<SpriteRenderer>();
     }
     public void ChangeState(Cursor_State newCursor)
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum HotChoc_State { Empty,Filling,Filled,Marshmallow,WhippedCream}
+public enum HotChoc_State { Empty,Filled,Marshmallow,WhippedCream, Filling }
 public class HotChoc : IDraggable
 {
     public GameManager manager;
@@ -95,9 +95,8 @@ public class HotChoc : IDraggable
     public override bool GiveToClient(Client client)
     {
         
-        if (client.WantChoc(current))
+        if (client.GiveHotChoc(this))
         {
-            client.GiveChoc(this);
             ChangeState(HotChoc_State.Empty);
             return true;
         }
